@@ -1,0 +1,212 @@
+MULTI
+{'total_tiles_played': 57, 'turn_count': 57, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 10.0, 'avg_draw_count': 16.0, 'set_count': 15, 'run_count': 4, 'group_count': 11, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 53, 'turn_count': 61, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.5, 'avg_draw_count': 13.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 55, 'turn_count': 62, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 14.5, 'avg_draw_count': 15.5, 'set_count': 14, 'run_count': 1, 'group_count': 13, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 60, 'turn_count': 58, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 9.5, 'avg_draw_count': 17.0, 'set_count': 16, 'run_count': 6, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 58, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 17.0, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 33, 'turn_count': 23, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 4.5, 'avg_draw_count': 6.0, 'set_count': 10, 'run_count': 4, 'group_count': 6, 'avg_tiles_leftover': 3.5, 'avg_score': 3.5} 
+
+{'total_tiles_played': 57, 'turn_count': 63, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 12.0, 'avg_draw_count': 17.0, 'set_count': 10, 'run_count': 0, 'group_count': 10, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 63, 'turn_count': 68, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 18.5, 'set_count': 16, 'run_count': 3, 'group_count': 13, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 66, 'turn_count': 73, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.5, 'avg_draw_count': 19.5, 'set_count': 15, 'run_count': 5, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 57, 'turn_count': 62, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 16.0, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 59, 'turn_count': 60, 'first_turn_open': 0.5, 'avg_open_turn': 7.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 16.5, 'set_count': 16, 'run_count': 6, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 50, 'turn_count': 48, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 11.0, 'avg_draw_count': 12.5, 'set_count': 12, 'run_count': 1, 'group_count': 11, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 65, 'turn_count': 73, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 20.0, 'set_count': 15, 'run_count': 4, 'group_count': 11, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 60, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 12.5, 'avg_draw_count': 18.0, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 59, 'turn_count': 63, 'first_turn_open': 0.0, 'avg_open_turn': 8.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 17.0, 'set_count': 13, 'run_count': 1, 'group_count': 12, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 63, 'turn_count': 67, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 18.0, 'set_count': 13, 'run_count': 1, 'group_count': 12, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 66, 'turn_count': 76, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 17.0, 'avg_draw_count': 19.5, 'set_count': 14, 'run_count': 2, 'group_count': 12, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 53, 'turn_count': 55, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 12.0, 'avg_draw_count': 14.0, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 59, 'turn_count': 62, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 16.0, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 60, 'turn_count': 66, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 17.5, 'set_count': 13, 'run_count': 1, 'group_count': 12, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 61, 'turn_count': 63, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 17.0, 'set_count': 13, 'run_count': 2, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 63, 'turn_count': 69, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 18.5, 'set_count': 14, 'run_count': 2, 'group_count': 12, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 64, 'turn_count': 74, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 17.0, 'avg_draw_count': 18.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 48, 'turn_count': 49, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 10.5, 'avg_draw_count': 12.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 61, 'turn_count': 65, 'first_turn_open': 0.0, 'avg_open_turn': 7.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 17.0, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 61, 'turn_count': 69, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 17.5, 'set_count': 13, 'run_count': 0, 'group_count': 13, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 56, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 16.0, 'set_count': 16, 'run_count': 7, 'group_count': 9, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 59, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 16.0, 'set_count': 15, 'run_count': 3, 'group_count': 12, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 68, 'turn_count': 75, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 16.0, 'avg_draw_count': 20.5, 'set_count': 13, 'run_count': 4, 'group_count': 9, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 63, 'turn_count': 71, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 16.0, 'avg_draw_count': 18.5, 'set_count': 14, 'run_count': 2, 'group_count': 12, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 61, 'turn_count': 65, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 17.0, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 58, 'turn_count': 61, 'first_turn_open': 0.0, 'avg_open_turn': 5.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 15.5, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 58, 'turn_count': 58, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 12.0, 'avg_draw_count': 16.0, 'set_count': 17, 'run_count': 5, 'group_count': 12, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 55, 'turn_count': 53, 'first_turn_open': 0.0, 'avg_open_turn': 12.5, 'avg_rearrange_turns': 10.5, 'avg_draw_count': 15.0, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 63, 'turn_count': 70, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 18.5, 'set_count': 15, 'run_count': 2, 'group_count': 13, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 65, 'turn_count': 74, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.5, 'avg_draw_count': 19.5, 'set_count': 11, 'run_count': 1, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 60, 'turn_count': 67, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 14.5, 'avg_draw_count': 17.5, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 42, 'turn_count': 37, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 7.5, 'avg_draw_count': 9.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 57, 'turn_count': 61, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 15.5, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 56, 'turn_count': 57, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 10.0, 'avg_draw_count': 16.5, 'set_count': 12, 'run_count': 3, 'group_count': 9, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 59, 'turn_count': 63, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 12.5, 'avg_draw_count': 17.0, 'set_count': 15, 'run_count': 5, 'group_count': 10, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 58, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.5, 'avg_draw_count': 16.0, 'set_count': 15, 'run_count': 2, 'group_count': 13, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 67, 'turn_count': 75, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 20.0, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 58, 'turn_count': 55, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 10.5, 'avg_draw_count': 16.0, 'set_count': 13, 'run_count': 2, 'group_count': 11, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 57, 'turn_count': 61, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 15.5, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 45, 'turn_count': 40, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 9.5, 'avg_draw_count': 10.0, 'set_count': 12, 'run_count': 3, 'group_count': 9, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 54, 'turn_count': 51, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 9.5, 'avg_draw_count': 14.5, 'set_count': 15, 'run_count': 6, 'group_count': 9, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 52, 'turn_count': 49, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 10.0, 'avg_draw_count': 12.5, 'set_count': 15, 'run_count': 4, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 64, 'turn_count': 72, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 18.5, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 56, 'turn_count': 64, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 17.0, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 3.0, 'avg_score': 3.0} 
+
+{'total_tiles_played': 62, 'turn_count': 66, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 18.0, 'set_count': 11, 'run_count': 3, 'group_count': 8, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 55, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 16.0, 'avg_draw_count': 15.0, 'set_count': 14, 'run_count': 1, 'group_count': 13, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 67, 'turn_count': 76, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 15.5, 'avg_draw_count': 20.0, 'set_count': 15, 'run_count': 4, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 62, 'turn_count': 69, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 17.5, 'set_count': 15, 'run_count': 2, 'group_count': 13, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 62, 'turn_count': 70, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 18.0, 'set_count': 15, 'run_count': 5, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 63, 'turn_count': 75, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 19.5, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 51, 'turn_count': 50, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 10.0, 'avg_draw_count': 13.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 49, 'turn_count': 50, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 11.0, 'set_count': 10, 'run_count': 4, 'group_count': 6, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 64, 'turn_count': 76, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 18.0, 'avg_draw_count': 18.5, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 71, 'turn_count': 81, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 16.5, 'avg_draw_count': 22.0, 'set_count': 8, 'run_count': 1, 'group_count': 7, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 68, 'turn_count': 77, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 16.0, 'avg_draw_count': 20.5, 'set_count': 11, 'run_count': 0, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 56, 'turn_count': 55, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 9.5, 'avg_draw_count': 15.0, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 57, 'turn_count': 54, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 10.5, 'avg_draw_count': 15.5, 'set_count': 14, 'run_count': 2, 'group_count': 12, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 68, 'turn_count': 77, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 20.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 46, 'turn_count': 43, 'first_turn_open': 0.0, 'avg_open_turn': 5.5, 'avg_rearrange_turns': 8.5, 'avg_draw_count': 11.5, 'set_count': 10, 'run_count': 2, 'group_count': 8, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 63, 'turn_count': 72, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 16.5, 'avg_draw_count': 18.0, 'set_count': 11, 'run_count': 3, 'group_count': 8, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 57, 'turn_count': 59, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 12.0, 'avg_draw_count': 15.0, 'set_count': 15, 'run_count': 2, 'group_count': 13, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 64, 'turn_count': 70, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 14.5, 'avg_draw_count': 18.5, 'set_count': 15, 'run_count': 2, 'group_count': 13, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 70, 'turn_count': 79, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 21.5, 'set_count': 13, 'run_count': 2, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 63, 'turn_count': 72, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 15.5, 'avg_draw_count': 19.0, 'set_count': 17, 'run_count': 5, 'group_count': 12, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 48, 'turn_count': 49, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 10.5, 'avg_draw_count': 12.5, 'set_count': 10, 'run_count': 1, 'group_count': 9, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 60, 'turn_count': 65, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 18.0, 'set_count': 13, 'run_count': 2, 'group_count': 11, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 61, 'turn_count': 60, 'first_turn_open': 0.0, 'avg_open_turn': 6.5, 'avg_rearrange_turns': 9.5, 'avg_draw_count': 17.5, 'set_count': 11, 'run_count': 1, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 52, 'turn_count': 48, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 7.0, 'avg_draw_count': 13.0, 'set_count': 14, 'run_count': 1, 'group_count': 13, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 61, 'turn_count': 70, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 18.5, 'set_count': 13, 'run_count': 4, 'group_count': 9, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 67, 'turn_count': 68, 'first_turn_open': 0.0, 'avg_open_turn': 6.5, 'avg_rearrange_turns': 11.5, 'avg_draw_count': 20.0, 'set_count': 14, 'run_count': 4, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 65, 'turn_count': 72, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 11.5, 'avg_draw_count': 20.0, 'set_count': 11, 'run_count': 2, 'group_count': 9, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 65, 'turn_count': 75, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 16.0, 'avg_draw_count': 20.0, 'set_count': 11, 'run_count': 2, 'group_count': 9, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 67, 'turn_count': 84, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 20.0, 'avg_draw_count': 21.0, 'set_count': 10, 'run_count': 2, 'group_count': 8, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 65, 'turn_count': 75, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 16.5, 'avg_draw_count': 19.5, 'set_count': 13, 'run_count': 3, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 54, 'turn_count': 54, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 11.0, 'avg_draw_count': 14.5, 'set_count': 10, 'run_count': 1, 'group_count': 9, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 62, 'turn_count': 76, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 18.5, 'avg_draw_count': 19.0, 'set_count': 12, 'run_count': 1, 'group_count': 11, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 63, 'turn_count': 67, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 18.0, 'set_count': 14, 'run_count': 3, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 60, 'turn_count': 67, 'first_turn_open': 0.5, 'avg_open_turn': 5.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 18.0, 'set_count': 11, 'run_count': 1, 'group_count': 10, 'avg_tiles_leftover': 2.0, 'avg_score': 2.0} 
+
+{'total_tiles_played': 44, 'turn_count': 38, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 7.5, 'avg_draw_count': 9.5, 'set_count': 12, 'run_count': 0, 'group_count': 12, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 66, 'turn_count': 82, 'first_turn_open': 0.0, 'avg_open_turn': 6.5, 'avg_rearrange_turns': 20.0, 'avg_draw_count': 19.5, 'set_count': 16, 'run_count': 3, 'group_count': 13, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 66, 'turn_count': 81, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 20.0, 'avg_draw_count': 19.5, 'set_count': 12, 'run_count': 3, 'group_count': 9, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 56, 'turn_count': 59, 'first_turn_open': 0.5, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 12.0, 'avg_draw_count': 15.5, 'set_count': 16, 'run_count': 5, 'group_count': 11, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 63, 'turn_count': 76, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 18.5, 'avg_draw_count': 18.0, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 61, 'turn_count': 66, 'first_turn_open': 1.0, 'avg_open_turn': 1.5, 'avg_rearrange_turns': 14.5, 'avg_draw_count': 17.5, 'set_count': 12, 'run_count': 2, 'group_count': 10, 'avg_tiles_leftover': 1.0, 'avg_score': 1.0} 
+
+{'total_tiles_played': 40, 'turn_count': 34, 'first_turn_open': 0.0, 'avg_open_turn': 5.5, 'avg_rearrange_turns': 6.0, 'avg_draw_count': 9.5, 'set_count': 10, 'run_count': 2, 'group_count': 8, 'avg_tiles_leftover': 3.5, 'avg_score': 3.5} 
+
+{'total_tiles_played': 55, 'turn_count': 53, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 10.5, 'avg_draw_count': 14.0, 'set_count': 15, 'run_count': 3, 'group_count': 12, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 57, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 13.5, 'avg_draw_count': 16.0, 'set_count': 12, 'run_count': 3, 'group_count': 9, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 57, 'turn_count': 60, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 14.0, 'avg_draw_count': 15.0, 'set_count': 13, 'run_count': 2, 'group_count': 11, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 68, 'turn_count': 75, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 13.0, 'avg_draw_count': 20.5, 'set_count': 12, 'run_count': 4, 'group_count': 8, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 60, 'turn_count': 64, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 12.5, 'avg_draw_count': 18.5, 'set_count': 15, 'run_count': 4, 'group_count': 11, 'avg_tiles_leftover': 2.5, 'avg_score': 2.5} 
+
+{'total_tiles_played': 71, 'turn_count': 84, 'first_turn_open': 0.5, 'avg_open_turn': 2.5, 'avg_rearrange_turns': 17.0, 'avg_draw_count': 22.0, 'set_count': 9, 'run_count': 2, 'group_count': 7, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 60, 'turn_count': 69, 'first_turn_open': 0.0, 'avg_open_turn': 3.5, 'avg_rearrange_turns': 15.0, 'avg_draw_count': 17.5, 'set_count': 14, 'run_count': 2, 'group_count': 12, 'avg_tiles_leftover': 1.5, 'avg_score': 1.5} 
+
+{'total_tiles_played': 55, 'turn_count': 56, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 11.0, 'avg_draw_count': 14.0, 'set_count': 14, 'run_count': 2, 'group_count': 12, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+{'total_tiles_played': 48, 'turn_count': 46, 'first_turn_open': 0.0, 'avg_open_turn': 4.5, 'avg_rearrange_turns': 12.0, 'avg_draw_count': 10.5, 'set_count': 11, 'run_count': 3, 'group_count': 8, 'avg_tiles_leftover': 0.5, 'avg_score': 0.5} 
+
+total_tiles_played: 58.97
+turn_count: 63.57
+first_turn_open: 29.50%
+avg_open_turn: 3.49
+avg_rearrange_turns: 13.37 (21.03%)
+avg_draw_count: 16.69 (26.25%)
+set_count: 13.14
+run_count: 2.72 (20.70%)
+group_count: 10.42 (79.30%)
+avg_tiles_leftover: 1.205
+avg_score: 1.205
