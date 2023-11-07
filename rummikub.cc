@@ -50,6 +50,7 @@ int original_board[K][N + 1];
 int hand[K][N + 1];
 int dp[N + 1][Power<K, K * M>::value];
 int next_array[N + 1][Power<K, K * M>::value];
+int dp2[N + 1][Power<K, K * M>::value][K][N + 1]; // current value, current inlengths, target color, target number
 
 int mp(const int *inlengths)
 { // map runlengths array to dp array index
@@ -397,9 +398,12 @@ void show(int value, int *inlengths)
 
 void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 {
+	int used[K];
+	memset(used, 0, sizeof(used));
 	int scoreOfRuns = 0;
 	for (int i = 0; i < M * K; i++)
 	{
+		used[i % K] += runlengths[i] > 0 ? 1 : 0;
 		scoreOfRuns += runscores[i];
 	}
 
@@ -421,18 +425,115 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 	}
 
 	if (ones == 4 && twos == 4)
+	{
 		scoreOfGroups = 8;
+		for (int i = 0; i < K; i++)
+			if (grouparray[i] > 0)
+				used[i] += grouparray[i];
+	}
 	else if (ones == 4 && twos == 3)
+	{
 		scoreOfGroups = 7;
+		for (int i = 0; i < K; i++)
+			if (grouparray[i] > 0)
+				used[i] += grouparray[i];
+	}
 	else if (ones == 3 && twos == 3)
+	{
 		scoreOfGroups = 6;
+		for (int i = 0; i < K; i++)
+			if (grouparray[i] > 0)
+				used[i] += grouparray[i];
+	}
 	else if (ones == 4 && twos == 2)
+	{
 		scoreOfGroups = 6;
+		for (int i = 0; i < K; i++)
+			if (grouparray[i] > 0)
+				used[i] += grouparray[i];
+	}
 	else if (ones == 4 && twos < 3)
+	{
 		scoreOfGroups = 4;
+		for (int i = 0; i < K; i++)
+			if (grouparray[i] > 0)
+				used[i] += 1;
+	}
 	else if (ones == 3 && twos < 3)
+	{
 		scoreOfGroups = 3;
+		for (int i = 0; i < K; i++)
+			if (grouparray[i] > 0)
+				used[i] += 1;
+	}
+
+	for (int i = 0; i < K; i++)
+	{
+		if (used[i] < original_board[i][value])
+			return;
+	}
+
+	for (int i = 0; i < K; i++)
+	{
+		bool firstRunEnded = (inlengths[i] > 0 && inlengths[i] < MIN_SET_SIZE) && runlengths[i] == 0;
+		bool secondRunEnded = (inlengths[i + K] > 0 && inlengths[i + K] < MIN_SET_SIZE) && runlengths[i + K] == 0;
+		if (firstRunEnded && secondRunEnded)
+		{
+			for (int j = value - 1; j > 0 && (j > value - MIN_SET_SIZE); j--)
+			{
+				if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 2)
+					return;
+			}
+		}
+		else if (firstRunEnded || secondRunEnded)
+		{
+			for (int j = value - 1; j > 0 && (j > value - MIN_SET_SIZE); j--)
+			{
+				if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 1)
+					return;
+			}
+		}
+	}
+
+	for (int i = 0; i < K; i++)
+	{
+		dp2[value][mp(inlengths)][i][value] = used[i];
+	}
+
+	for (int k = 0; k < K; k++)
+	{
+		for (int i = 1; i <= N; i++)
+		{
+			dp2[value + 1][mp(runlengths)][k][i] = dp2[value][mp(inlengths)][k][i];
+		}
+	}
+
 	int score = scoreOfRuns + (scoreOfGroups * value);
+	if (value + 1 > maxn)
+	{
+		for (int i = 0; i < K; i++)
+		{
+			bool firstRunEnded = (runlengths[i] > 0 && runlengths[i] < MIN_SET_SIZE);
+			bool secondRunEnded = (runlengths[i + K] > 0 && runlengths[i + K] < MIN_SET_SIZE);
+			if (firstRunEnded && secondRunEnded)
+			{
+				for (int j = value; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
+				{
+					if (original_board[i][j] > dp2[value + 1][mp(runlengths)][i][j] - 2)
+						return;
+				}
+			}
+			else if (firstRunEnded || secondRunEnded)
+			{
+				for (int j = value - 1; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
+				{
+					if (original_board[i][j] > dp2[value + 1][mp(runlengths)][i][j] - 1)
+						return;
+				}
+			}
+		}
+	}
+
 	if (value + 1 <= maxn) // stop recursion when we pass the largest tile value
 	{
 		int future_score = go(value + 1, runlengths);
@@ -529,6 +630,7 @@ int main(int argc, char *argv[])
 			next_array[i][j] = -1;
 		}
 	}
+	memset(dp2, 0, sizeof(dp2));
 	maxn = 0;
 	minn = N + 1;
 
