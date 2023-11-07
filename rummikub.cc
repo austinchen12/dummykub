@@ -37,7 +37,7 @@ struct Tile
 	Tile(int num, const std::string &col) : number(num), color(col) {}
 };
 
-const int N = 1 + 13;
+const int N = 13;
 const int K = 4;
 const int M = 2;
 const int KIJK = 10;
@@ -169,7 +169,7 @@ int get_tiles_placed_from_lengths(tuple<int, int> prev_lengths, tuple<int, int> 
 	return -1;
 }
 
-void show(int val, int *inlengths)
+void show(int value, int *inlengths)
 {
 	int prev_arr[K * M] = {0};
 	int curr_arr[K * M] = {0};
@@ -183,7 +183,7 @@ void show(int val, int *inlengths)
 	{
 		memcpy(prev_arr, curr_arr, sizeof(prev_arr));
 		memset(curr_arr, 0, sizeof(curr_arr));
-		current = next_array[val][current];
+		current = next_array[value][current];
 		rmp(current, curr_arr);
 		for (int k = 0; k < K; ++k)
 		{
@@ -198,7 +198,7 @@ void show(int val, int *inlengths)
 			if (prev1_length >= 3 && curr1_length == 0)
 			{
 				vector<Tile> run;
-				for (int i = val - true_lengths[i1]; i < val; ++i)
+				for (int i = value - true_lengths[i1]; i < value; ++i)
 				{
 					run.push_back(Tile(i, COLORS[k]));
 				}
@@ -207,7 +207,7 @@ void show(int val, int *inlengths)
 			if (prev2_length >= 3 && curr2_length == 0)
 			{
 				vector<Tile> run;
-				for (int i = val - true_lengths[i2]; i < val; ++i)
+				for (int i = value - true_lengths[i2]; i < value; ++i)
 				{
 					run.push_back(Tile(i, COLORS[k]));
 				}
@@ -237,7 +237,7 @@ void show(int val, int *inlengths)
 				true_lengths[i2] += 1;
 			}
 		}
-		val += 1;
+		value += 1;
 	}
 
 	int tile_counts[K][N + 1];
@@ -419,6 +419,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 		if (grouparray[i] == 2)
 			twos++;
 	}
+
 	if (ones == 4 && twos == 4)
 		scoreOfGroups = 8;
 	else if (ones == 4 && twos == 3)
@@ -432,7 +433,14 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 	else if (ones == 3 && twos < 3)
 		scoreOfGroups = 3;
 	int score = scoreOfRuns + (scoreOfGroups * value);
-	score += go(value + 1, runlengths);
+	if (value + 1 <= maxn) // stop recursion when we pass the largest tile value
+	{
+		int future_score = go(value + 1, runlengths);
+		if (future_score < 0)
+			return;
+
+		score += future_score;
+	}
 	if (score > dp[value][mp(inlengths)])
 	{
 		next_array[value][mp(inlengths)] = mp(runlengths);
@@ -501,8 +509,6 @@ void runs(int value, int *inlengths, int *runlengths, int *runscores, int k)
 // recursive function, compute/dp-get added score at this value given runlengths
 int go(int value, int *inlengths)
 {
-	if (value > maxn) // end recursion when we pass the largest tile value
-		return 0;
 	if (dp[value][mp(inlengths)] > -1) // return value if we already know it
 		return dp[value][mp(inlengths)];
 	int runlengths[K * M], runscores[(K * M) + 1] = {0};
@@ -515,8 +521,14 @@ int main(int argc, char *argv[])
 {
 	memset(original_board, 0, sizeof(original_board));
 	memset(hand, 0, sizeof(hand));
-	memset(dp, -1, sizeof(dp));
-	memset(next_array, -1, sizeof(dp));
+	for (int i = 0; i < N + 1; i++)
+	{
+		for (int j = 0; j < pow(K, K * M); j++)
+		{
+			dp[i][j] = -1;
+			next_array[i][j] = -1;
+		}
+	}
 	maxn = 0;
 	minn = N + 1;
 
