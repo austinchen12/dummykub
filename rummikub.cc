@@ -37,49 +37,38 @@ struct Tile
 	Tile(int num, const std::string &col) : number(num), color(col) {}
 };
 
-const int N = 13;
-const int K = 4;
+const int N = 7;
+const int K = 3;
 const int M = 2;
-const int KIJK = 10;
 const int MIN_SET_SIZE = 3;
 
-const array<std::string, K> COLORS = {"BLUE", "BLACK", "RED", "YELLOW"};
+const array<std::string, K> COLORS = {"BLUE", "RED", "YELLOW"};
 
 int minn, maxn;
 int original_board[K][N + 1];
 int hand[K][N + 1];
-int dp[N + 1][Power<K, K * M>::value];
-int next_array[N + 1][Power<K, K * M>::value];
-int dp2[N + 1][Power<K, K * M>::value][K][N + 1]; // current value, current inlengths, target color, target number
+int dp[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
+int next_array[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
+int dp2[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value][K][N + 1]; // current value, current inlengths, target color, target number
 
 int mp(const int *inlengths)
 { // map runlengths array to dp array index
-	int newlengths[K * M];
-	for (int i = 0; i < K; i++)
-	{
-		newlengths[i] = inlengths[i];
-		newlengths[i + K] = inlengths[i + K];
-	}
-
 	int sum = 0;
 	for (int i = 0; i < K * M; i++)
-		sum += newlengths[i] * pow(K, i);
+		sum += inlengths[i] * pow(K + 1, i);
 
 	return sum;
-	return newlengths[0] + K * newlengths[1] + K * K * newlengths[2] + K * K * K * newlengths[3] + K * K * K * K * newlengths[4] + K * K * K * K * K * newlengths[5] + K * K * K * K * K * K * newlengths[6] + K * K * K * K * K * K * K * newlengths[7]; // now for K=4, should be made for any K
 } // mp
 
 int go(int, int *); // header for go-function
 
 void rmp(int in, int *result)
-{ // reverse mapping from int to runlengt-array
-	int i = 0;
-	while (in > 0)
+{ // reverse of mp
+	for (int i = 0; i < K * M; i++)
 	{
-		result[i] = in % K;
-		in = in / K;
-		i++;
-	} // while
+		result[i] = in % (K + 1);
+		in /= (K + 1);
+	}
 } // rmp
 
 map<pair<tuple<int, int>, tuple<int, int>>, int> rest = {
@@ -180,7 +169,7 @@ void show(int value, int *inlengths)
 	int true_lengths[K * M] = {0};
 	vector<vector<Tile>> sets;
 
-	while (current >= 0)
+	while (current >= 0 && value <= maxn)
 	{
 		memcpy(prev_arr, curr_arr, sizeof(prev_arr));
 		memset(curr_arr, 0, sizeof(curr_arr));
@@ -500,14 +489,6 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 		dp2[value][mp(inlengths)][i][value] = used[i];
 	}
 
-	for (int k = 0; k < K; k++)
-	{
-		for (int i = 1; i <= N; i++)
-		{
-			dp2[value + 1][mp(runlengths)][k][i] = dp2[value][mp(inlengths)][k][i];
-		}
-	}
-
 	int score = scoreOfRuns + (scoreOfGroups * value);
 	if (value + 1 > maxn)
 	{
@@ -519,23 +500,29 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 			{
 				for (int j = value; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
 				{
-					if (original_board[i][j] > dp2[value + 1][mp(runlengths)][i][j] - 2)
+					if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 2)
 						return;
 				}
 			}
 			else if (firstRunEnded || secondRunEnded)
 			{
-				for (int j = value - 1; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
+				for (int j = value; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
 				{
-					if (original_board[i][j] > dp2[value + 1][mp(runlengths)][i][j] - 1)
+					if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 1)
 						return;
 				}
 			}
 		}
 	}
-
-	if (value + 1 <= maxn) // stop recursion when we pass the largest tile value
+	else
 	{
+		for (int k = 0; k < K; k++)
+		{
+			for (int i = 1; i <= N; i++)
+			{
+				dp2[value + 1][mp(runlengths)][k][i] = dp2[value][mp(inlengths)][k][i];
+			}
+		}
 		int future_score = go(value + 1, runlengths);
 		if (future_score < 0)
 			return;
@@ -624,7 +611,7 @@ int main(int argc, char *argv[])
 	memset(hand, 0, sizeof(hand));
 	for (int i = 0; i < N + 1; i++)
 	{
-		for (int j = 0; j < pow(K, K * M); j++)
+		for (int j = 0; j < pow(MIN_SET_SIZE + 1, K * M); j++)
 		{
 			dp[i][j] = -1;
 			next_array[i][j] = -1;
@@ -656,20 +643,15 @@ int main(int argc, char *argv[])
 			if (!seen_dash)
 				original_board[0][value]++;
 			break;
-		case 'g':
+		case 'r':
 			hand[1][value]++;
 			if (!seen_dash)
 				original_board[1][value]++;
 			break;
-		case 'r':
+		case 'y':
 			hand[2][value]++;
 			if (!seen_dash)
 				original_board[2][value]++;
-			break;
-		case 'y':
-			hand[3][value]++;
-			if (!seen_dash)
-				original_board[3][value]++;
 			break;
 		default:
 			break;
