@@ -47,9 +47,9 @@ const array<std::string, K> COLORS = {"BLUE", "RED", "YELLOW"};
 int minn, maxn;
 int original_board[K][N + 1];
 int hand[K][N + 1];
-int dp[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
+int score_dp[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
 int next_array[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
-int dp2[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value][K][N + 1]; // current value, current inlengths, target color, target number
+int used_dp[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value][K][N + 1]; // current value, current inlengths, target color, target number
 
 int mp(const int *inlengths)
 { // map runlengths array to dp array index
@@ -470,7 +470,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 		{
 			for (int j = value - 1; j > 0 && (j > value - MIN_SET_SIZE); j--)
 			{
-				if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 2)
+				if (original_board[i][j] > used_dp[value][mp(inlengths)][i][j] - 2)
 					return;
 			}
 		}
@@ -478,7 +478,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 		{
 			for (int j = value - 1; j > 0 && (j > value - MIN_SET_SIZE); j--)
 			{
-				if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 1)
+				if (original_board[i][j] > used_dp[value][mp(inlengths)][i][j] - 1)
 					return;
 			}
 		}
@@ -486,7 +486,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 
 	for (int i = 0; i < K; i++)
 	{
-		dp2[value][mp(inlengths)][i][value] = used[i];
+		used_dp[value][mp(inlengths)][i][value] = used[i];
 	}
 
 	int score = scoreOfRuns + (scoreOfGroups * value);
@@ -500,7 +500,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 			{
 				for (int j = value; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
 				{
-					if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 2)
+					if (original_board[i][j] > used_dp[value][mp(inlengths)][i][j] - 2)
 						return;
 				}
 			}
@@ -508,7 +508,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 			{
 				for (int j = value; j > 0 && (j > value + 1 - MIN_SET_SIZE); j--)
 				{
-					if (original_board[i][j] > dp2[value][mp(inlengths)][i][j] - 1)
+					if (original_board[i][j] > used_dp[value][mp(inlengths)][i][j] - 1)
 						return;
 				}
 			}
@@ -520,7 +520,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 		{
 			for (int i = 1; i <= N; i++)
 			{
-				dp2[value + 1][mp(runlengths)][k][i] = dp2[value][mp(inlengths)][k][i];
+				used_dp[value + 1][mp(runlengths)][k][i] = used_dp[value][mp(inlengths)][k][i];
 			}
 		}
 		int future_score = go(value + 1, runlengths);
@@ -529,10 +529,10 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 
 		score += future_score;
 	}
-	if (score > dp[value][mp(inlengths)])
+	if (score > score_dp[value][mp(inlengths)])
 	{
 		next_array[value][mp(inlengths)] = mp(runlengths);
-		dp[value][mp(inlengths)] = score;
+		score_dp[value][mp(inlengths)] = score;
 	} // if
 } // makegroups
 
@@ -597,12 +597,12 @@ void runs(int value, int *inlengths, int *runlengths, int *runscores, int k)
 // recursive function, compute/dp-get added score at this value given runlengths
 int go(int value, int *inlengths)
 {
-	if (dp[value][mp(inlengths)] > -1) // return value if we already know it
-		return dp[value][mp(inlengths)];
+	if (score_dp[value][mp(inlengths)] > -1) // return value if we already know it
+		return score_dp[value][mp(inlengths)];
 	int runlengths[K * M], runscores[(K * M) + 1] = {0};
 	memcpy(runlengths, inlengths, sizeof(runlengths)); // TODO: assignment could be done directly from inlengths in runs()-function
 	runs(value, inlengths, runlengths, runscores, 0);  // start recursion
-	return dp[value][mp(inlengths)];
+	return score_dp[value][mp(inlengths)];
 } // go
 
 int main(int argc, char *argv[])
@@ -613,11 +613,11 @@ int main(int argc, char *argv[])
 	{
 		for (int j = 0; j < pow(MIN_SET_SIZE + 1, K * M); j++)
 		{
-			dp[i][j] = -1;
+			score_dp[i][j] = -1;
 			next_array[i][j] = -1;
 		}
 	}
-	memset(dp2, 0, sizeof(dp2));
+	memset(used_dp, 0, sizeof(used_dp));
 	maxn = 0;
 	minn = N + 1;
 
