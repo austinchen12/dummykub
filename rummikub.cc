@@ -47,7 +47,7 @@ const array<std::string, K> COLORS = {"BLUE", "RED", "YELLOW"};
 int minn, maxn;
 int original_board[K][N + 1];
 int hand[K][N + 1];
-int score_dp[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
+map<std::string, int> score_dp;
 int next_array[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value];
 int used_dp[N + 1][Power<MIN_SET_SIZE + 1, K * M>::value][K][N + 1]; // current value, current inlengths, target color, target number
 
@@ -60,7 +60,7 @@ int mp(const int *inlengths)
 	return sum;
 } // mp
 
-int go(int, int *); // header for go-function
+int go(int, int *, std::string); // header for go-function
 
 void rmp(int in, int *result)
 { // reverse of mp
@@ -159,241 +159,281 @@ int get_tiles_placed_from_lengths(tuple<int, int> prev_lengths, tuple<int, int> 
 	return -1;
 }
 
-void show(int value, int *inlengths)
+void show()
 {
-	int prev_arr[K * M] = {0};
-	int curr_arr[K * M] = {0};
-	memcpy(curr_arr, inlengths, sizeof(curr_arr));
-	int current = mp(inlengths);
-
-	int true_lengths[K * M] = {0};
-	vector<vector<Tile>> sets;
-
-	while (current >= 0 && value <= maxn)
+	for (auto const &dp_pair : score_dp)
 	{
-		memcpy(prev_arr, curr_arr, sizeof(prev_arr));
-		memset(curr_arr, 0, sizeof(curr_arr));
-		current = next_array[value][current];
-		rmp(current, curr_arr);
-		for (int k = 0; k < K; ++k)
+		if (dp_pair.first.length() == 4 * (maxn - minn + 1) && dp_pair.second >= 0)
 		{
-			int i1 = k, i2 = K + k;
-			int prev1_length = prev_arr[i1];
-			int curr1_length = curr_arr[i1];
-			int prev2_length = prev_arr[i2];
-			int curr2_length = curr_arr[i2];
-			int count = get_tiles_placed_from_lengths(tuple<int, int>(prev1_length, prev2_length), tuple<int, int>(curr1_length, curr2_length));
-			assert(count != -1);
+			int score = 0;
+			int prev_arr[K * M] = {0};
+			int curr_arr[K * M] = {0};
+			int current = 0;
 
-			if (prev1_length >= 3 && curr1_length == 0)
+			int true_lengths[K * M] = {0};
+			vector<vector<Tile>> sets;
+			// cout << "KEY: " << dp_pair.first << endl;
+			for (int value = minn; value <= maxn; value++)
 			{
-				vector<Tile> run;
-				for (int i = value - true_lengths[i1]; i < value; ++i)
+				int mp_index = value - minn;
+				std::string mp_str = dp_pair.first.substr(0, 4 * (mp_index + 1));
+				score += score_dp[mp_str];
+				current = stoi(mp_str.substr(4 * mp_index, 4));
+				rmp(current, curr_arr);
+				// cout << value << ", " << mp_str << ", " << score_dp[mp_str] << endl;
+				// cout << "inlengths: ";
+				// for (int i = 0; i < K * M; i++)
+				// {
+				// 	cout << curr_arr[i] << " ";
+				// }
+				// cout << endl;
+				for (int k = 0; k < K; ++k)
 				{
-					run.push_back(Tile(i, COLORS[k]));
+					int i1 = k, i2 = K + k;
+					int prev1_length = prev_arr[i1];
+					int curr1_length = curr_arr[i1];
+					int prev2_length = prev_arr[i2];
+					int curr2_length = curr_arr[i2];
+					int count = get_tiles_placed_from_lengths(tuple<int, int>(prev1_length, prev2_length), tuple<int, int>(curr1_length, curr2_length));
+					assert(count != -1);
+
+					if (prev1_length >= 3 && curr1_length == 0)
+					{
+						vector<Tile> run;
+						for (int i = value - true_lengths[i1]; i < value; ++i)
+						{
+							run.push_back(Tile(i, COLORS[k]));
+						}
+						sets.push_back(run);
+					}
+					if (prev2_length >= 3 && curr2_length == 0)
+					{
+						vector<Tile> run;
+						for (int i = value - true_lengths[i2]; i < value; ++i)
+						{
+							run.push_back(Tile(i, COLORS[k]));
+						}
+						sets.push_back(run);
+					}
+
+					if (curr1_length == 0)
+					{
+						true_lengths[i1] = 0;
+					}
+					if (curr2_length == 0)
+					{
+						true_lengths[i2] = 0;
+					}
+
+					if (count == 1)
+					{
+						true_lengths[i1] += 1;
+					}
+					else if (count == 2)
+					{
+						true_lengths[i2] += 1;
+					}
+					else if (count == 3)
+					{
+						true_lengths[i1] += 1;
+						true_lengths[i2] += 1;
+					}
 				}
-				sets.push_back(run);
+
+				memcpy(prev_arr, curr_arr, sizeof(prev_arr));
+				memset(curr_arr, 0, sizeof(curr_arr));
 			}
-			if (prev2_length >= 3 && curr2_length == 0)
+
+			// leftovers
+			for (int k = 0; k < K; k++)
 			{
-				vector<Tile> run;
-				for (int i = value - true_lengths[i2]; i < value; ++i)
+				for (int m = 0; m < M; m++)
 				{
-					run.push_back(Tile(i, COLORS[k]));
-				}
-				sets.push_back(run);
-			}
-
-			if (curr1_length == 0)
-			{
-				true_lengths[i1] = 0;
-			}
-			if (curr2_length == 0)
-			{
-				true_lengths[i2] = 0;
-			}
-
-			if (count == 1)
-			{
-				true_lengths[i1] += 1;
-			}
-			else if (count == 2)
-			{
-				true_lengths[i2] += 1;
-			}
-			else if (count == 3)
-			{
-				true_lengths[i1] += 1;
-				true_lengths[i2] += 1;
-			}
-		}
-		value += 1;
-	}
-
-	int tile_counts[K][N + 1];
-	memcpy(tile_counts, hand, sizeof(tile_counts));
-
-	for (const vector<Tile> &run : sets)
-	{
-		for (const Tile &tile : run)
-		{
-			int color_index = distance(COLORS.begin(), find(COLORS.begin(), COLORS.end(), tile.color));
-			tile_counts[color_index][tile.number] -= 1;
-		}
-	}
-
-	vector<Tile> unused_tiles;
-	for (int i = 1; i <= N; ++i)
-	{
-		int grouparray[K] = {0};
-		for (int k = 0; k < K; ++k)
-		{
-			grouparray[k] = tile_counts[k][i];
-		}
-
-		vector<pair<int, int>> ones, twos;
-		for (int k = 0; k < K; ++k)
-		{
-			if (grouparray[k] >= 1)
-			{
-				ones.push_back(make_pair(i, k));
-			}
-			if (grouparray[k] == 2)
-			{
-				twos.push_back(make_pair(i, k));
-			}
-		}
-
-		if (ones.size() >= 3 && twos.size() >= 3)
-		{
-			vector<Tile> group1, group2;
-			for (const auto &tile : ones)
-			{
-				group1.push_back(Tile(tile.first, COLORS[tile.second]));
-			}
-			for (const auto &tile : twos)
-			{
-				group2.push_back(Tile(tile.first, COLORS[tile.second]));
-			}
-			sets.push_back(group1);
-			sets.push_back(group2);
-
-			for (const auto &tile : ones)
-			{
-				int color_index = tile.second;
-				int number = tile.first;
-				tile_counts[color_index][number] -= 1;
-			}
-			for (const auto &tile : twos)
-			{
-				int color_index = tile.second;
-				int number = tile.first;
-				tile_counts[color_index][number] -= 1;
-			}
-		}
-		else if (ones.size() == 4 && twos.size() == 2)
-		{
-			// find the first tile that is in ones but not in twos
-			vector<Tile> group1, group2;
-			bool found = false;
-			for (const auto &tile : ones)
-			{
-				if (!found && find(twos.begin(), twos.end(), tile) == twos.end())
-				{
-					found = true;
-					group2.push_back(Tile(tile.first, COLORS[tile.second]));
-				}
-				else
-				{
-					group1.push_back(Tile(tile.first, COLORS[tile.second]));
+					if (true_lengths[(m * K) + k] > 0)
+					{
+						vector<Tile> run;
+						for (int i = maxn + 1 - true_lengths[(m * K) + k]; i < maxn + 1; ++i)
+						{
+							run.push_back(Tile(i, COLORS[k]));
+						}
+						sets.push_back(run);
+					}
 				}
 			}
-			for (const auto &tile : twos)
-			{
-				group2.push_back(Tile(tile.first, COLORS[tile.second]));
-			}
-			sets.push_back(group1);
-			sets.push_back(group2);
 
-			for (const auto &tile : ones)
-			{
-				int color_index = tile.second;
-				int number = tile.first;
-				tile_counts[color_index][number] -= 1;
-			}
-			for (const auto &tile : twos)
-			{
-				int color_index = tile.second;
-				int number = tile.first;
-				tile_counts[color_index][number] -= 1;
-			}
-		}
-		else if (ones.size() >= 3)
-		{
-			vector<Tile> group1;
-			for (const auto &tile : ones)
-			{
-				group1.push_back(Tile(tile.first, COLORS[tile.second]));
-			}
-			sets.push_back(group1);
+			int tile_counts[K][N + 1];
+			memcpy(tile_counts, hand, sizeof(tile_counts));
 
-			for (const auto &tile : ones)
+			for (const vector<Tile> &run : sets)
 			{
-				int color_index = tile.second;
-				int number = tile.first;
-				tile_counts[color_index][number] -= 1;
+				for (const Tile &tile : run)
+				{
+					int color_index = distance(COLORS.begin(), find(COLORS.begin(), COLORS.end(), tile.color));
+					tile_counts[color_index][tile.number] -= 1;
+				}
 			}
+
+			vector<Tile> unused_tiles;
+			for (int i = minn; i <= maxn; ++i)
+			{
+				int grouparray[K] = {0};
+				for (int k = 0; k < K; ++k)
+				{
+					grouparray[k] = tile_counts[k][i];
+				}
+
+				vector<std::pair<int, int>> ones, twos;
+				for (int k = 0; k < K; ++k)
+				{
+					if (grouparray[k] >= 1)
+					{
+						ones.push_back(make_pair(i, k));
+					}
+					if (grouparray[k] == 2)
+					{
+						twos.push_back(make_pair(i, k));
+					}
+				}
+
+				if (ones.size() >= 3 && twos.size() >= 3)
+				{
+					vector<Tile> group1, group2;
+					for (const auto &tile : ones)
+					{
+						group1.push_back(Tile(tile.first, COLORS[tile.second]));
+					}
+					for (const auto &tile : twos)
+					{
+						group2.push_back(Tile(tile.first, COLORS[tile.second]));
+					}
+					sets.push_back(group1);
+					sets.push_back(group2);
+
+					for (const auto &tile : ones)
+					{
+						int color_index = tile.second;
+						int number = tile.first;
+						tile_counts[color_index][number] -= 1;
+					}
+					for (const auto &tile : twos)
+					{
+						int color_index = tile.second;
+						int number = tile.first;
+						tile_counts[color_index][number] -= 1;
+					}
+				}
+				else if (ones.size() == 4 && twos.size() == 2)
+				{
+					// find the first tile that is in ones but not in twos
+					vector<Tile> group1, group2;
+					bool found = false;
+					for (const auto &tile : ones)
+					{
+						if (!found && find(twos.begin(), twos.end(), tile) == twos.end())
+						{
+							found = true;
+							group2.push_back(Tile(tile.first, COLORS[tile.second]));
+						}
+						else
+						{
+							group1.push_back(Tile(tile.first, COLORS[tile.second]));
+						}
+					}
+					for (const auto &tile : twos)
+					{
+						group2.push_back(Tile(tile.first, COLORS[tile.second]));
+					}
+					sets.push_back(group1);
+					sets.push_back(group2);
+
+					for (const auto &tile : ones)
+					{
+						int color_index = tile.second;
+						int number = tile.first;
+						tile_counts[color_index][number] -= 1;
+					}
+					for (const auto &tile : twos)
+					{
+						int color_index = tile.second;
+						int number = tile.first;
+						tile_counts[color_index][number] -= 1;
+					}
+				}
+				else if (ones.size() >= 3)
+				{
+					vector<Tile> group1;
+					for (const auto &tile : ones)
+					{
+						group1.push_back(Tile(tile.first, COLORS[tile.second]));
+					}
+					sets.push_back(group1);
+
+					for (const auto &tile : ones)
+					{
+						int color_index = tile.second;
+						int number = tile.first;
+						tile_counts[color_index][number] -= 1;
+					}
+				}
+			}
+
+			for (int k = 0; k < K; ++k)
+			{
+				for (int i = 1; i <= N; ++i)
+				{
+					for (int _ = 0; _ < tile_counts[k][i]; ++_)
+					{
+						unused_tiles.push_back(Tile(i, COLORS[k]));
+					}
+				}
+			}
+
+			cout << score << endl
+				 << endl;
+			for (const auto &group : sets)
+			{
+				cout << '[';
+				for (const auto &tile : group)
+				{
+					cout << tile.number << tile.color;
+					if (&tile != &group.back())
+					{
+						cout << ", ";
+					}
+				}
+				cout << ']' << endl;
+			}
+			cout << endl;
+
+			cout << '[';
+			for (const auto &tile : unused_tiles)
+			{
+				cout << tile.number << tile.color;
+				if (&tile != &unused_tiles.back())
+				{
+					cout << ", ";
+				}
+			}
+			cout << ']';
+			cout << endl
+				 << endl;
+			cout << endl;
 		}
 	}
-
-	for (int k = 0; k < K; ++k)
-	{
-		for (int i = 1; i <= N; ++i)
-		{
-			for (int _ = 0; _ < tile_counts[k][i]; ++_)
-			{
-				unused_tiles.push_back(Tile(i, COLORS[k]));
-			}
-		}
-	}
-
-	for (const auto &group : sets)
-	{
-		cout << '[';
-		for (const auto &tile : group)
-		{
-			cout << tile.number << tile.color;
-			if (&tile != &group.back())
-			{
-				cout << ", ";
-			}
-		}
-		cout << ']' << endl;
-	}
-
-	cout << endl;
-
-	cout << '[';
-	for (const auto &tile : unused_tiles)
-	{
-		cout << tile.number << tile.color;
-		if (&tile != &unused_tiles.back())
-		{
-			cout << ", ";
-		}
-	}
-	cout << ']';
 }
 
-void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
+void makegroups(int value, int *inlengths, int *runlengths, int *runscores, std::string in_key)
 {
 	int used[K];
 	memset(used, 0, sizeof(used));
 	int scoreOfRuns = 0;
 	for (int i = 0; i < M * K; i++)
 	{
-		used[i % K] += runlengths[i] > 0 ? 1 : 0;
-		scoreOfRuns += runscores[i];
+		if (runlengths[i] > 0)
+		{
+			used[i % K]++;
+			scoreOfRuns += (runlengths[i] < MIN_SET_SIZE && (value == maxn)) ? INT_MIN : runscores[i];
+		}
 	}
 
 	int scoreOfGroups = 0, grouparray[K] = {0};
@@ -472,6 +512,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 			{
 				if (original_board[i][j] > used_dp[value][mp(inlengths)][i][j] - 2)
 					return;
+				used_dp[value][mp(inlengths)][i][j] -= 2;
 			}
 		}
 		else if (firstRunEnded || secondRunEnded)
@@ -480,6 +521,7 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 			{
 				if (original_board[i][j] > used_dp[value][mp(inlengths)][i][j] - 1)
 					return;
+				used_dp[value][mp(inlengths)][i][j] -= 1;
 			}
 		}
 	}
@@ -489,6 +531,9 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 		used_dp[value][mp(inlengths)][i][value] = used[i];
 	}
 
+	std::string mp_str = std::to_string(mp(runlengths));
+	std::string padded_mp = std::string(4 - mp_str.length(), '0') + mp_str;
+	std::string new_key = in_key + padded_mp;
 	int score = scoreOfRuns + (scoreOfGroups * value);
 	if (value + 1 > maxn)
 	{
@@ -523,25 +568,17 @@ void makegroups(int value, int *inlengths, int *runlengths, int *runscores)
 				used_dp[value + 1][mp(runlengths)][k][i] = used_dp[value][mp(inlengths)][k][i];
 			}
 		}
-		int future_score = go(value + 1, runlengths);
-		if (future_score < 0)
-			return;
-
-		score += future_score;
+		go(value + 1, runlengths, new_key);
 	}
-	if (score > score_dp[value][mp(inlengths)])
-	{
-		next_array[value][mp(inlengths)] = mp(runlengths);
-		score_dp[value][mp(inlengths)] = score;
-	} // if
+	score_dp[new_key] = score;
 } // makegroups
 
 // for each color k, compute the (added) score of a run up to that value
-void runs(int value, int *inlengths, int *runlengths, int *runscores, int k)
+void runs(int value, int *inlengths, int *runlengths, int *runscores, int k, std::string key)
 {
 	if (k == K)
 	{ // we have processed all K colors, so now try to make groups
-		makegroups(value, inlengths, runlengths, runscores);
+		makegroups(value, inlengths, runlengths, runscores, key);
 		return;
 	}
 	int runscores2[(M * K) + 1], runlengths2[M * K];
@@ -561,7 +598,7 @@ void runs(int value, int *inlengths, int *runlengths, int *runscores, int k)
 			else if (runlengths2[(m * K) + k] == 3)
 				runscores2[(m * K) + k] = (value * 3) - 1 - 2;
 		} // for
-		runs(value, inlengths, runlengths2, runscores2, k + 1);
+		runs(value, inlengths, runlengths2, runscores2, k + 1, key);
 	} // if
 
 	if (hand[k][value] >= 1)
@@ -581,7 +618,12 @@ void runs(int value, int *inlengths, int *runlengths, int *runscores, int k)
 				runscores2[(m * K) + k] = (value * 3) - 1 - 2;
 			runlengths2[(((m + 1) % 2) * K) + k] = 0;
 			runscores2[(((m + 1) % 2) * K) + k] = 0;
-			runs(value, inlengths, runlengths2, runscores2, k + 1);
+			runs(value, inlengths, runlengths2, runscores2, k + 1, key);
+
+			// Hardcoded for M = 2
+			// Skip duplicates
+			if ((runlengths[k] == runlengths[K + k]) || (runlengths[K + k] == 0))
+				break;
 		} // for
 	}	  // if
 
@@ -590,19 +632,15 @@ void runs(int value, int *inlengths, int *runlengths, int *runscores, int k)
 	memcpy(runlengths2, runlengths, sizeof(runlengths2));
 	runlengths2[(0 * K) + k] = 0;
 	runlengths2[(1 * K) + k] = 0;
-	runs(value, inlengths, runlengths2, runscores2, k + 1);
-
+	runs(value, inlengths, runlengths2, runscores2, k + 1, key);
 } // runs
 
 // recursive function, compute/dp-get added score at this value given runlengths
-int go(int value, int *inlengths)
+int go(int value, int *inlengths, std::string key)
 {
-	if (score_dp[value][mp(inlengths)] > -1) // return value if we already know it
-		return score_dp[value][mp(inlengths)];
 	int runlengths[K * M], runscores[(K * M) + 1] = {0};
-	memcpy(runlengths, inlengths, sizeof(runlengths)); // TODO: assignment could be done directly from inlengths in runs()-function
-	runs(value, inlengths, runlengths, runscores, 0);  // start recursion
-	return score_dp[value][mp(inlengths)];
+	memcpy(runlengths, inlengths, sizeof(runlengths));	   // TODO: assignment could be done directly from inlengths in runs()-function
+	runs(value, inlengths, runlengths, runscores, 0, key); // start recursion
 } // go
 
 int main(int argc, char *argv[])
@@ -613,7 +651,6 @@ int main(int argc, char *argv[])
 	{
 		for (int j = 0; j < pow(MIN_SET_SIZE + 1, K * M); j++)
 		{
-			score_dp[i][j] = -1;
 			next_array[i][j] = -1;
 		}
 	}
@@ -659,8 +696,7 @@ int main(int argc, char *argv[])
 	}	  // for
 
 	int inlengths[K * M] = {0};
-	cout << go(minn, inlengths) << endl
-		 << endl;
-	show(minn, inlengths);
+	go(minn, inlengths, "");
+	show();
 	return 0;
 } // main

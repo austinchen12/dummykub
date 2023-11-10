@@ -48,7 +48,7 @@ class Rummikub:
             # self.history.append((self.turn_count, self.turn, [copy.deepcopy(player.hand) for player in self.players], original_board, self.board))
             self.turn = (self.turn + 1) % len(self.players)
 
-            print('END:', self.board, '\n')
+            print('END:', self.board, player.hand, '\n')
 
         runs, groups, tiles_played = 0, 0, 0
         for set_ in self.board:

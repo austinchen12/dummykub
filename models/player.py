@@ -26,7 +26,12 @@ class Player(ABC):
 class GreedyPlayer(Player):
     def _make_move(self, board):
         if self.opened:
-            new_sets, unused_tiles = solve(board, self.hand)
+            moves = solve(board, self.hand)
+            if not moves:
+                self.draw_count += 1
+                return 'DRAW'
+
+            score, new_sets, unused_tiles = max(moves.values(), key=lambda x: x[0])
 
             if not new_sets:
                 self.draw_count += 1
@@ -55,17 +60,12 @@ class GreedyPlayer(Player):
             return board
 
 class CRFPlayer(Player):
-    def _get_moves(self, board):
-        moves = solve(board, self.hand)
-
-        return moves
-
     def _make_move(self, board):
         if self.opened:
-            moves = self._get_moves(board)
-            shuffled_moves = random.sample(moves, len(moves))
-            for move in shuffled_moves:
-                new_sets, unused_tiles = move
+            moves = solve(board, self.hand)
+            shuffled_keys = random.sample(list(moves.keys()), len(moves))
+            for key in shuffled_keys:
+                score, new_sets, unused_tiles = moves[key]
                 if not new_sets:
                     continue
 
