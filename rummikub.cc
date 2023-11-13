@@ -12,6 +12,9 @@
 #include <string>
 #include <array>
 #include <tuple>
+#include <cassert>
+#include <algorithm>
+#include <climits>
 using namespace std;
 
 template <int const base, unsigned int const exponent>
