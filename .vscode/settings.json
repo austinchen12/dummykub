@@ -3,6 +3,7 @@
         "groupscores",
         "groupsize",
         "inlengths",
+        "ISMCTS",
         "makegroups",
         "newlengths",
         "rummikub",

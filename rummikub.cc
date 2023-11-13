@@ -249,7 +249,7 @@ void show()
 			{
 				for (int m = 0; m < M; m++)
 				{
-					if (true_lengths[(m * K) + k] > 0)
+					if (true_lengths[(m * K) + k] >= MIN_SET_SIZE)
 					{
 						vector<Tile> run;
 						for (int i = maxn + 1 - true_lengths[(m * K) + k]; i < maxn + 1; ++i)

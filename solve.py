@@ -5,7 +5,14 @@ import subprocess
 
 def handle_result(chunk, board_tiles, board, hand):
     result = chunk.split("\n\n")
-    score = int(result[0])
+    try:
+        score = int(result[0])
+    except Exception as e:
+        print('ERROR: invalid score')
+        print('board', board)
+        print('hand', hand)
+        raise e
+    
     if score == 0:
         return None
 
@@ -48,6 +55,9 @@ def handle_result(chunk, board_tiles, board, hand):
             if new_board_count[COLORS.index(c)][value] < old_board_count[COLORS.index(c)][value]:
                 return None
 
+    # sort sets and unused_tiles
+    sets = sorted(sets, key=lambda x: (sum([tile.number for tile in x]), x[0]))
+    unused_tiles = sorted(unused_tiles)
 
     return (score, sets, unused_tiles)
 
@@ -69,7 +79,7 @@ def solve(board, hand):
                     assert(moves[score][1] == sets)
                     assert(moves[score][2] == unused_tiles)
                 moves[tuple(sorted(unused_tiles))] = (score, sets, unused_tiles)
-        return moves
+        return moves.values()
     else:
         print('ERROR:', process.stderr)
         return []
