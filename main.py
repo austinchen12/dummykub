@@ -69,7 +69,8 @@ if __name__ == "__main__":
         for stat in individual_stats:
             for key in stat.keys():
                 if key == 'winner':
-                    stats[stat[key]] += 1
+                    for winner in stat[key].split('_'):
+                        stats[int(winner)] += 1
                 else:
                     stats[key] += stat[key]
     

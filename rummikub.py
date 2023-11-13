@@ -107,20 +107,18 @@ class Rummikub:
         avg_rearrange_turns /= len(self.players)
 
         # Compute winner, person with empty hand or person with the least score in hand
-        winner = None
         if len(self.pool) == 0:
-            winner = self.players[0]
-            for player in self.players:
-                if len(player.hand) < len(winner.hand):
-                    winner = player
+            winners = []
+            scores = [sum(tile.number for tile in player.hand) for player in self.players]
+            min_score = min(scores)
+            for i in range(len(scores)):
+                if scores[i] == min_score:
+                    winners.append(self.players[i])
         else:
-            winner = self.players[0]
-            for player in self.players:
-                if sum(tile.number for tile in player.hand) < sum(tile.number for tile in winner.hand):
-                    winner = player
+            winners = [player for player in self.players if len(player.hand) == 0]
 
         return {
-            'winner': winner.id,
+            'winner': '_'.join([str(winner.id) for winner in winners]),
             'total_tiles_played': tiles_played,
             'turn_count': self.turn_count,
             'first_turn_open': sum((self.players[i].open_turn == i + 1) for i in range(len(self.players))) / len(self.players),
