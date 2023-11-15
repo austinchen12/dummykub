@@ -20,17 +20,20 @@ class Node:
 
         return untried_moves
 
-    def ucb(self, legal_moves, exploration=0.7):
+    def ucb(self, legal_moves, exploration=2):
         legal_children = [child for child in self.child_nodes if child.move in legal_moves]
-
+        # print('children', legal_children)
+        # print('ucb1', [float(child.score) / float(child.visits) for child in legal_children])
+        # print('ucb2', [exploration * sqrt(log(child.avails) / float(child.visits)) for child in legal_children])
+        # print('ucb3', [float(child.score) / float(child.visits) + exploration * sqrt(log(child.avails) / float(child.visits)) for child in legal_children])
         selected_child = max(
             legal_children,
             key=lambda child: float(child.score) / float(child.visits)
             + exploration * sqrt(log(child.avails) / float(child.visits)),
         )
 
-        for selected_child in legal_children:
-            selected_child.avails += 1
+        for child in legal_children:
+            child.avails += 1
 
         return selected_child
 
@@ -42,33 +45,45 @@ class Node:
     def update(self, end_state):
         self.visits += 1
         if self.turn is not None:
-            if len(end_state.players[self.turn].hand):
-                self.score += sum(tile.number for player in end_state.players for tile in player.hand if player.id != self.turn)
-            else:
-                self.score -= sum(tile.number for tile in end_state.players[self.turn].hand)
+            hand_sums = [sum(tile.number for tile in player.hand) for player in end_state.players]
+            
+            min_hand_sum = min(hand_sums)
+            computed_scores, losers_score = [], 0
+            for hand_sum in hand_sums:
+                if hand_sum == min_hand_sum:
+                    computed_scores.append(None)
+                else:
+                    score = -1 * (hand_sum - min_hand_sum)
+                    losers_score += score
+                    computed_scores.append(score)
 
-    def TreeToString(self, indent):
-        s = self.IndentString(indent) + str(self)
+            for i in range(len(computed_scores)):
+                if computed_scores[i] == None:
+                    computed_scores[i] = -1 * losers_score
+            # want to scale score so absolute max value is equal to 1 but must also consider negative numbers
+            abs_max = max(abs(score) for score in computed_scores)
+
+            self.score += computed_scores[self.turn] if abs_max == 0 else (computed_scores[self.turn] / abs_max)
+
+    def tree_to_string(self, indent):
+        s = "\n"
+        for _ in range(1, indent + 1):
+            s += "| "
+        s += str(self)
         for c in self.child_nodes:
             s += c.TreeToString(indent + 1)
         return s
 
-    def IndentString(self, indent):
-        s = "\n"
-        for i in range(1, indent + 1):
-            s += "| "
-        return s
-
-    def ChildrenToString(self):
+    def children_to_string(self):
         s = ""
         for c in self.child_nodes:
             s += str(c) + "\n"
         return s
 
     def __repr__(self):
-        return "[M:%s W/V/A: %4i/%4i/%4i]" % (
-            self.move,
+        return "[S/V/A: %4i/%4i/%4i\tM:%s ]" % (
             self.score,
             self.visits,
             self.avails,
+            self.move,
         )

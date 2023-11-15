@@ -1,6 +1,7 @@
 
 
 import argparse
+import sys
 
 from models.player import ISMCTSPlayer, GreedyPlayer, RandomPlayer
 from rummikub import Rummikub
@@ -8,13 +9,16 @@ import multiprocessing
 
 
 def main(args):
-    iterations, player_types, stats = args
+    iterations, player_types, stats, *process_id = args
+    if len(process_id) > 0:
+        f = open(f"stats_{process_id[0]}.txt", "w")
+        sys.stdout = f
     for _ in range(iterations):
         players = []
         for i, player_type in enumerate(player_types):
             if player_type == "greedy":
                 players.append(GreedyPlayer(i))
-            if player_type == "random":
+            elif player_type == "random":
                 players.append(RandomPlayer(i))
             elif player_type == "ismcts-100":
                 players.append(ISMCTSPlayer(i, 100))
@@ -26,13 +30,16 @@ def main(args):
         rummikub = Rummikub(players)
         new_stats = rummikub.start()
         stats.append(new_stats)
+    if len(process_id) > 0:
+        f.close()
+        sys.stdout = sys.__stdout__
    
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--players", type=str, nargs="*",
-                        help="Player types, e.g. greedy, ismcts-100, ismcts-1000", default=["greedy", "greedy"])
+                        help="Player types, e.g. random, greedy, ismcts-100, ismcts-1000", default=["greedy", "greedy"])
     parser.add_argument("--multiprocessing", "-m", action="store_true")
     parser.add_argument("--iterations", "-i", type=int, default=1)
     args = parser.parse_args()
@@ -59,7 +66,7 @@ if __name__ == "__main__":
             cores = 4
             with multiprocessing.Pool(processes=cores) as p:
                 chunks = args.iterations // cores
-                main_args = [(chunks, args.players, individual_stats)] * cores
+                main_args = [(chunks, args.players, individual_stats, i) for i in range(cores)]
                 p.map(main, main_args)
             print('MULTI')
         else:

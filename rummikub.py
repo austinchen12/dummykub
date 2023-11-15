@@ -26,7 +26,7 @@ class Rummikub:
             if len(player.hand) == 0:
                 return True
         
-        return len(self.pool) == 0
+        return len(self.pool) < len(self.players)
 
     def clone_and_randomize(self, observer):
         st = copy.deepcopy(self)
@@ -65,7 +65,7 @@ class Rummikub:
             self.turn_count += 1
 
             player = self.players[self.turn]
-            print('START:', self.turn, self.board, player.hand)
+            # print('START:', self.turn, self.board, player.hand)
             result = player.make_move(self)
             if result == 'DRAW':
                 player.hand.append(self.pool.pop())
@@ -79,7 +79,7 @@ class Rummikub:
             # self.history.append((self.turn_count, self.turn, [copy.deepcopy(player.hand) for player in self.players], original_board, self.board))
             self.turn = (self.turn + 1) % len(self.players)
 
-            print('END  :', self.board, player.hand, '\n')
+            # print('END  :', self.board, player.hand, '\n')
         print('GAME OVER', len(self.pool), [sum(tile.number for tile in player.hand) for player in self.players])
         runs, groups, tiles_played = 0, 0, 0
         for set_ in self.board:
@@ -107,7 +107,7 @@ class Rummikub:
         avg_rearrange_turns /= len(self.players)
 
         # Compute winner, person with empty hand or person with the least score in hand
-        if len(self.pool) == 0:
+        if len(self.pool) < len(self.players):
             winners = []
             scores = [sum(tile.number for tile in player.hand) for player in self.players]
             min_score = min(scores)
