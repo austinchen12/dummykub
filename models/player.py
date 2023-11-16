@@ -103,8 +103,9 @@ class GreedyPlayer(Player):
 
 
 class ISMCTSPlayer(Player):
-    def __init__(self, id, iterations):
+    def __init__(self, id, iterations, exploration):
         self.iterations = iterations
+        self.exploration = exploration
         self.count = 0
         super().__init__(id)
 
@@ -184,7 +185,7 @@ class ISMCTSPlayer(Player):
 
             # Select
             while not st.is_game_over() and node.get_untried_moves(moves) == []:
-                node = node.ucb(moves)
+                node = node.ucb(moves, exploration=self.exploration)
                 # print('SEELCT', node.move)
                 player._do_move(st, node.move)
                 moves = player._get_moves(st.board)
