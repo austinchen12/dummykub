@@ -1,0 +1,35 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Information Set Monte Carlo Tree Search for Rummikub Variant</title>
+</head>
+
+<body class="vsc-initialized">
+  <h1>Information Set Monte Carlo Tree Search for Rummikub Variant</h1>
+  <h3>Author: Austin Chen</h3>
+  <h3>Advisor: James Glenn</h3>
+  <h2>Abstract:</h2>
+  <p>
+    Dummykub is a variant of Rummikub, a turn-based game of imperfect information played by 2-4 people. The game state
+    consists of the players’ hands, private to each player, the board, the public tiles previously played, and the pool of
+    unknown tiles. There are 2 sets of tiles numbered from 1 to 7 and in three different colors: red, blue, and yellow.
+    Players are initially dealt a hand of 8 random tiles from the pool. Players play sets, which can be either a run, a set
+    of three or more consecutive, strictly increasing, numbers all in the same color or a group, is a set of three of the
+    same number in uniquely different colors. I will be implementing an IS-MCTS agent. IS-MCTS is an algorithm similar to
+    MCTS, an heuristic algorithm that builds a search tree and expands the tree while focusing on promising branches to find
+    more favorable outcomes; but IS-MCTS uses information sets instead of game states. Information sets are simply sets of
+    states that are indistinguishable from one player's point of view, due to the hidden nature of their opponent's state. I
+    initially started with Monte Carlo CFR (MCCFR) but changed to IS-MCTS after struggling with the large action state. A
+    low amount of games were used and so results varied, but IS-MCTS achieved anywhere from a 70% to an 80% win rate, over a
+    range of exploration values, against a random agent, between 50% to a 60% win rate against a greedy agent. This clearly
+    shows that IS-MCTS performs much better than a random agent, and still better than an impressive greedy agent.
+  </p>
+  <p>
+    <a href="proposal.pdf">Proposal</a>
+    <a href="finalreport.pdf">Final Report</a>
+    <a href="https://github.com/austinchen12/dummykub">Github Repo</a>
+  </p>
+</body>
+</html>
